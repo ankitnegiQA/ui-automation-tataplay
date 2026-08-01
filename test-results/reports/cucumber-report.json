@@ -1,0 +1,156 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "content-info-api-validation;validate-bee-movie-content-details",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Validate Bee Movie content details",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1419403400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "User is logged into application",
+            "match": {
+              "location": "src\\steps\\ContentApiSteps.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 458599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "User calls content info API",
+            "match": {
+              "location": "src\\steps\\ContentApiSteps.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 576986800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "Validate vod details in response",
+            "match": {
+              "location": "src\\steps\\ContentApiSteps.js:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1040300
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 466162900
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "content-info-api-validation",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Content Info API Validation",
+    "tags": [],
+    "uri": "src\\feature\\contentApi.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login-functionality;verify-successful-login",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Verify successful login",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1425305699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "User launches the application",
+            "match": {
+              "location": "src\\steps\\loginSteps.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6895990600
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "User logs in with valid credentials",
+            "match": {
+              "location": "src\\steps\\loginSteps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6149663099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "User should be logged in successfully",
+            "match": {
+              "location": "src\\steps\\loginSteps.js:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1226999
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 428457300
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-functionality",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login Functionality",
+    "tags": [],
+    "uri": "src\\feature\\login.feature"
+  }
+]
