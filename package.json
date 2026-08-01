@@ -1,0 +1,16 @@
+{
+  "name": "ui-automation-tataplay",
+  "version": "1.0.0",
+  "author": "Ankit Negi",
+  "scripts": {
+    "test": "cucumber-js",
+    "report": "node src/utility/ReportGenerator.js"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.0.0",
+    "@playwright/test": "^1.55.0",
+    "chai": "^5.0.0",
+    "multiple-cucumber-html-reporter": "^3.8.0",
+    "playwright": "^1.55.0"
+  }
+}
