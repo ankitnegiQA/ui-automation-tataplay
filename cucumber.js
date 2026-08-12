@@ -1,15 +1,7 @@
-module.exports = {
+export default {
   default: {
-    require: [
-      'src/hooks/*.js',
-      'src/steps/*.js'
-    ],
-    paths: [
-      'src/feature/*.feature'
-    ],
-    format: [
-      'progress',
-      'json:test-results/reports/cucumber-report.json'
-    ]
+    paths: ['src/feature/**/*.feature'],
+    import: ['src/steps/**/*.js', 'src/hooks/**/*.js'],
+    format: ['progress']
   }
 };

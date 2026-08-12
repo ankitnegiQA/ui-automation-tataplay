@@ -1,14 +1,13 @@
-const { chromium } = require('playwright');
+import { chromium } from 'playwright';
 
 let browser;
 let context;
 let page;
 
-async function launchBrowser() {
-
+export async function launchBrowser() {
     browser = await chromium.launch({
         headless: false,
-    slowMo: 1000
+        slowMo: 1000
     });
 
     context = await browser.newContext({
@@ -22,8 +21,7 @@ async function launchBrowser() {
     return { browser, context, page };
 }
 
-async function closeBrowser() {
-
+export async function closeBrowser() {
     if (context) {
         await context.close();
     }
@@ -32,8 +30,3 @@ async function closeBrowser() {
         await browser.close();
     }
 }
-
-module.exports = {
-    launchBrowser,
-    closeBrowser
-};

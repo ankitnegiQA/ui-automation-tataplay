@@ -1,7 +1,9 @@
 Feature: Login Functionality 
-# Manual test cases
+
+  @ui @test
   Scenario: Verify successful login
 
     Given User launches the application
     When User logs in with valid credentials
-    Then User should be logged in successfully
+    When User should be logged in successfully
+    Then Validate profile name and email on the profile page

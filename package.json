@@ -1,6 +1,7 @@
 {
   "name": "ui-automation-tataplay",
   "version": "1.0.0",
+  "type": "module",
   "author": "Ankit Negi",
   "scripts": {
     "test": "cucumber-js",
