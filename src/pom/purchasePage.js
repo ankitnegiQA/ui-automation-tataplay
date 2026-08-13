@@ -28,6 +28,7 @@ export class PurchasePage {
     // Order Confirmation Locators
     this.orderConfirmation = page.locator('#order-confirmation');
     this.invoiceNumberSpan = page.locator('#order-confirmation span');
+    this.confirmOrderBtn78 = page.locator('//button[normalize-space()="Confirm"]');
     
     // Invoice Locators
     this.invoiceRows = page.locator('table tbody tr');
@@ -101,8 +102,8 @@ export class PurchasePage {
     // Step 4: Select COD and confirm order
     await this.paymentMethodSelect.waitFor({ state: 'visible', timeout: 10000 });
     await this.paymentMethodSelect.selectOption('cash-on-delivery');
-    await this.confirmOrderBtn.click();
-        await this.confirmOrderBtn.click();
+    await this.confirmOrderBtn78.click();
+        await this.confirmOrderBtn78.click();
   }
 
   async verifyInvoiceGenerated() {
