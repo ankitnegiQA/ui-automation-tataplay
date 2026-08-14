@@ -1,10 +1,8 @@
-Feature: E-Commerce Product Purchase and Invoice Verification
-
+Feature: End-to-End Purchase Flow
   Acceptance Criteria:
-  - User can browse and select products from the catalog.
-  - User can add multiple items to the cart and update item quantities.
-  - User can complete checkout selecting Cash on Delivery (COD).
-  - User can view the generated order invoice under "My Invoices".
+The user should be able to browse products, add multiple items to the cart (including updating quantity), complete the checkout using Cash on Delivery, and successfully view the generated invoice under My Invoices. Suggestion to use like AC's 
+** For Invoiceid press confirm button on application twice
+
 
    @ui @purchase
   Scenario: Successfully purchase products via Cash on Delivery and verify invoice
