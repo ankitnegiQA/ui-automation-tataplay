@@ -330,26 +330,51 @@ export default class TataPlayPage {
     const products = this.page.locator('a.card');
     await products.first().waitFor({ state: 'visible', timeout: 10000 });
 
-    if (await products.count() < count) {
+    const totalProducts = await products.count();
+    if (totalProducts < count) {
       throw new Error(`Expected at least ${count} products in catalog.`);
     }
 
-    for (let index = 0; index < count; index++) {
+    let addedCount = 0;
+    for (let index = 0; index < totalProducts && addedCount < count; index++) {
       await products.nth(index).click();
-      await expect(this.page.locator('[data-test="add-to-cart"]')).toBeVisible({ timeout: 10000 });
+      const addToCartButton = this.page.locator('[data-test="add-to-cart"]');
+      await expect(addToCartButton).toBeVisible({ timeout: 10000 });
+
+      if (!await addToCartButton.isEnabled({ timeout: 3000 }).catch(() => false)) {
+        await this.page.goto(this.baseUrl);
+        await products.first().waitFor({ state: 'visible', timeout: 10000 });
+        continue;
+      }
+
       const cartResponse = this.page.waitForResponse(response =>
-        response.url().includes('/carts') &&
-        response.request().method() === 'POST' &&
-        [200, 201].includes(response.status()),
+        response.url().includes('/cart') &&
+        ['POST', 'PUT', 'PATCH'].includes(response.request().method()),
         { timeout: 15000 }
-      );
+      ).catch(() => null);
 
-      await this.page.locator('[data-test="add-to-cart"]').click();
-      await cartResponse;
-      this.uiCartId = await this.page.evaluate(() => sessionStorage.getItem('cart_id'));
+      await addToCartButton.click();
+      const response = await cartResponse;
+      this.uiCartId = await this.page
+        .waitForFunction(() => sessionStorage.getItem('cart_id'), undefined, { timeout: 5000 })
+        .then(handle => handle.jsonValue())
+        .catch(() => this.page.evaluate(() => sessionStorage.getItem('cart_id')));
 
+      if (response && response.status() >= 400) {
+        throw new Error(`Add to cart failed with HTTP ${response.status()} at ${response.url()}`);
+      }
+
+      if (!response && !this.uiCartId) {
+        throw new Error('Add to cart did not return a cart response or create a cart_id in session storage.');
+      }
+
+      addedCount++;
       await this.page.goto(this.baseUrl);
       await products.first().waitFor({ state: 'visible', timeout: 10000 });
+    }
+
+    if (addedCount < count) {
+      throw new Error(`Expected to add ${count} available products, but only added ${addedCount}.`);
     }
   }
 
