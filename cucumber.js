@@ -1,7 +1,10 @@
 export default {
   default: {
-    paths: ['src/feature/**/*.feature'],
-    import: ['src/steps/**/*.js', 'src/hooks/**/*.js'],
+    paths: ['PrismStructure/tests/**/*.feature'],
+    import: [
+      'PrismStructure/tests/helpers/steps/**/*.js',
+      'PrismStructure/tests/helpers/hooks/**/*.js'
+    ],
     format: ['progress']
   }
 };

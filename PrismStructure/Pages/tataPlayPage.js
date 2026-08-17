@@ -2,12 +2,12 @@ import { expect } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import config from '../utility/Config.js';
-import { tatautility } from '../utility/tataUtility.js';
+import config from '../tests/helpers/Config.js';
+import { tatautility } from '../tests/helpers/tataUtility.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const userDataPath = path.join(__dirname, '../utility/userData.json');
-const credentialsPath = path.join(__dirname, '../utility/credentials.json');
+const userDataPath = path.join(__dirname, '../tests/test-data/userData.json');
+const credentialsPath = path.join(__dirname, '../tests/test-data/credentials.json');
 
 const readJson = (filePath, fallback = {}) => {
   try {

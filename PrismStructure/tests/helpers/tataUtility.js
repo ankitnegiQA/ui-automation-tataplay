@@ -8,9 +8,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const jsonPath = path.join(__dirname, 'credentials.json');
+const jsonPath = path.join(__dirname, '../test-data/credentials.json');
 
-const jsonPath2 = path.join(__dirname, 'userData.json');
+const jsonPath2 = path.join(__dirname, '../test-data/userData.json');
 export const tatautility = {
   /**
    * Generates a random valid password restricted strictly to 8 characters.

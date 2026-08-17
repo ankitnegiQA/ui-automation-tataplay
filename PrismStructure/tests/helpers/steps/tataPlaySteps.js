@@ -1,6 +1,6 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import TataPlayPage from '../pom/tataPlayPage.js';
+import TataPlayPage from '../../../Pages/tataPlayPage.js';
 
 const app = world => world.tataPlayPage ||= new TataPlayPage(world);
 

@@ -4,8 +4,8 @@
   "type": "module",
   "author": "Ankit Negi",
   "scripts": {
-    "test": "node src/utility/runTestsWithReport.js",
-    "report": "node src/utility/ReportGenerator.js"
+    "test": "node PrismStructure/tests/helpers/reporting/runTestsWithReport.js",
+    "report": "node PrismStructure/tests/helpers/reporting/ReportGenerator.js"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^12.0.0",

@@ -19,11 +19,11 @@ const cucumberBin = path.join(
 function runCucumber(extraArgs) {
   const cucumberArgs = [
     cucumberBin,
-    'src/feature/**/*.feature',
+    'PrismStructure/tests/**/*.feature',
     '--import',
-    'src/steps/**/*.js',
+    'PrismStructure/tests/helpers/steps/**/*.js',
     '--import',
-    'src/hooks/**/*.js',
+    'PrismStructure/tests/helpers/hooks/**/*.js',
     '--format',
     'progress',
     '--format',

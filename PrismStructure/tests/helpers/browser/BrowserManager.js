@@ -12,7 +12,7 @@ export async function launchBrowser() {
 
     context = await browser.newContext({
         recordVideo: {
-            dir: 'test-results/videos/'
+            dir: 'PrismStructure/execution-reports/videos/'
         }
     });
 

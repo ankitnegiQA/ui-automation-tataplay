@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url';
 const require = createRequire(import.meta.url);
 const reporter = require('multiple-cucumber-html-reporter');
 
-export const REPORT_ROOT_DIR = path.join('test-results', 'reports');
+export const REPORT_ROOT_DIR = path.join('PrismStructure', 'execution-reports');
 export const JSON_REPORT_DIR = path.join(REPORT_ROOT_DIR, 'json');
 export const JSON_REPORT_PATH = path.join(JSON_REPORT_DIR, 'cucumber-report.json');
 export const HTML_REPORT_DIR = path.join(REPORT_ROOT_DIR, 'html');

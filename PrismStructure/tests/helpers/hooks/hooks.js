@@ -2,12 +2,12 @@ import { Before, After, Status, setDefaultTimeout } from '@cucumber/cucumber';
 import { request as playwrightRequest } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
-import config from '../utility/Config.js';
-import { launchBrowser, closeBrowser } from '../utility/browser/BrowserManager.js';
+import config from '../Config.js';
+import { launchBrowser, closeBrowser } from '../browser/BrowserManager.js';
 
 setDefaultTimeout(60 * 1000);
 
-const SCREENSHOT_DIR = path.join('test-results', 'screenshots');
+const SCREENSHOT_DIR = path.join('PrismStructure', 'screenshots');
 
 function safeFileName(value) {
   return value
