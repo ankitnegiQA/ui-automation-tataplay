@@ -247,27 +247,50 @@ export default class TataPlayPage {
     if (await signIn.isVisible({ timeout: 10000 }).catch(() => false)) {
       await signIn.click();
     }
+
+    const emailInput = this.page.locator('[data-test="email"]');
+    if (!await emailInput.isVisible({ timeout: 5000 }).catch(() => false)) {
+      await this.page.goto(new URL('/auth/login', this.baseUrl).toString());
+    }
+
+    await expect(emailInput).toBeVisible({ timeout: 10000 });
   }
 
   async loginWithStoredCredentials() {
     const { email, password } = this.credentials;
     expect(email, 'Stored email should exist in credentials.json').toBeTruthy();
     expect(password, 'Stored password should exist in credentials.json').toBeTruthy();
-    await this.page.locator('[data-test="email"]').fill(email);
+
+    if (await this.isLoggedIn(1000)) return;
+
+    const emailInput = this.page.locator('[data-test="email"]');
+    if (!await emailInput.isVisible({ timeout: 2000 }).catch(() => false)) {
+      await this.openLoginPage();
+    }
+
+    await emailInput.fill(email);
     await this.page.locator('[data-test="password"]').fill(password);
     await this.page.locator('[data-test="login-submit"]').click();
   }
 
   loggedInMarker() {
-    return this.page.locator('[data-test="nav-profile"], [data-test="nav-menu"]');
+    return this.page.locator('[data-test="nav-menu"]');
   }
 
   async isLoggedIn(timeout = 5000) {
-    return this.loggedInMarker().isVisible({ timeout }).catch(() => false);
+    if (await this.loggedInMarker().isVisible({ timeout }).catch(() => false)) {
+      return true;
+    }
+
+    return this.page.locator('[data-test="nav-profile"]').isVisible({ timeout: 1000 }).catch(() => false);
   }
 
   async expectLoggedIn() {
-    await expect(this.loggedInMarker()).toBeVisible({ timeout: 10000 });
+    if (await this.loggedInMarker().isVisible({ timeout: 10000 }).catch(() => false)) {
+      return;
+    }
+
+    await expect(this.page.locator('[data-test="nav-profile"]').first()).toBeVisible({ timeout: 10000 });
   }
 
   async expectProfileMatchesUserData() {

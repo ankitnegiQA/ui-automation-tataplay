@@ -1,0 +1,19 @@
+---
+description: Project-wide QA automation standards for the Playwright and Cucumber JS framework.
+globs:
+alwaysApply: true
+---
+
+# QA Automation Rules
+
+- Treat this repository as a Playwright + Cucumber JS BDD framework for Practice Software Testing.
+- Keep Gherkin scenarios in `src/feature`, step definitions in `src/steps`, page objects in `src/pom`, shared utilities in `src/utility`, and lifecycle code in `src/hooks`.
+- Keep step definitions thin. Put browser actions, API calls, and assertions in page objects or utilities.
+- Prefer Playwright locators using `data-test` attributes. Avoid brittle CSS/XPath selectors unless no stable attribute exists.
+- Use async/await for all Playwright and API operations.
+- Do not add arbitrary waits such as `page.waitForTimeout` unless there is a documented product timing reason.
+- Do not hardcode production credentials, secrets, tokens, or PII. Use `src/utility/Config.js`, generated test data, or local JSON fixtures.
+- Preserve screenshot capture for every executed UI scenario in `src/hooks/hooks.js`.
+- Preserve final Cucumber JSON and HTML report generation through `npm test`.
+- Keep API scenarios tagged `@api` and UI scenarios tagged `@ui` so hooks can initialize the right context.
+- Verify code-only changes with syntax checks. Verify framework changes with `npm test -- --dry-run` before a full live run.

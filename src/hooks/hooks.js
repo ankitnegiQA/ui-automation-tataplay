@@ -1,9 +1,42 @@
 import { Before, After, Status, setDefaultTimeout } from '@cucumber/cucumber';
 import { request as playwrightRequest } from '@playwright/test';
+import { mkdir } from 'node:fs/promises';
+import path from 'node:path';
 import config from '../utility/Config.js';
 import { launchBrowser, closeBrowser } from '../utility/browser/BrowserManager.js';
 
 setDefaultTimeout(60 * 1000);
+
+const SCREENSHOT_DIR = path.join('test-results', 'screenshots');
+
+function safeFileName(value) {
+  return value
+    .replace(/[^a-zA-Z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '') || 'scenario';
+}
+
+async function captureScenarioScreenshot(world, scenario) {
+  if (!world.page || world.page.isClosed()) {
+    return;
+  }
+
+  await mkdir(SCREENSHOT_DIR, { recursive: true });
+
+  const scenarioName = safeFileName(scenario.pickle.name);
+  const status = scenario.result?.status ?? Status.UNKNOWN;
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const screenshotPath = path.join(
+    SCREENSHOT_DIR,
+    `${scenarioName}_${status.toLowerCase()}_${timestamp}.png`
+  );
+
+  const screenshot = await world.page.screenshot({
+    path: screenshotPath,
+    fullPage: true
+  });
+
+  await world.attach(screenshot, 'image/png');
+}
 
 Before(async function (scenario) {
   const isApi = scenario.pickle.tags.some(tag => tag.name === '@api');
@@ -24,13 +57,14 @@ Before(async function (scenario) {
 });
 
 After(async function (scenario) {
-  // Capture UI screenshot on failure
-  if (scenario.result?.status === Status.FAILED && this.page) {
-    const screenshot = await this.page.screenshot({
-      path: `test-results/screenshots/${scenario.pickle.name.replace(/[^a-zA-Z0-9]/g, '_')}.png`,
-      fullPage: true
-    });
-    await this.attach(screenshot, 'image/png');
+  // Capture UI screenshot for every executed UI scenario before teardown.
+  if (this.page) {
+    try {
+      await captureScenarioScreenshot(this, scenario);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      await this.attach(`Screenshot capture failed: ${message}`, 'text/plain');
+    }
   }
 
   // Clean up UI context

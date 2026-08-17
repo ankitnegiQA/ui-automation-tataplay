@@ -4,7 +4,7 @@
   "type": "module",
   "author": "Ankit Negi",
   "scripts": {
-   "test": "cucumber-js \"src/feature/**/*.feature\" --import \"src/steps/**/*.js\" --import \"src/hooks/**/*.js\" --format progress",
+    "test": "node src/utility/runTestsWithReport.js",
     "report": "node src/utility/ReportGenerator.js"
   },
   "devDependencies": {
