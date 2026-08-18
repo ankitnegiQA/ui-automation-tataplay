@@ -1,0 +1,30 @@
+{
+  "validUser": {
+    "first_name": "Api",
+    "last_name": "Tester",
+    "dob": "1990-01-01",
+    "phone": "5551234567",
+    "address": {
+      "street": "123 Main Street",
+      "city": "New York",
+      "state": "NY",
+      "country": "United States",
+      "postal_code": "10001"
+    }
+  },
+  "validUserUi": {
+    "first_name": "Sharad",
+    "last_name": "Agrawal",
+    "dob": "1990-01-01",
+    "country": "India",
+    "postal_code": "12345",
+    "house_number": "123",
+    "street": "Main St",
+    "city": "Anytown",
+    "state": "CA",
+    "phone": "1234567890",
+    "password": "TTNNew1234!@#$"
+  },
+  "invalidEmail": "not-an-email",
+  "shortPassword": "abc"
+}

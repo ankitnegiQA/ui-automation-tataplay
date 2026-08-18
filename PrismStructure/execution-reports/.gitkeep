@@ -1,1 +1,3 @@
+Playwright HTML reports are generated here after test execution.
 
+Run: `npm run test:all` then `npm run report`
