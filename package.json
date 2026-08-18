@@ -1,17 +1,24 @@
 {
-  "name": "ui-automation-tataplay",
+  "name": "qa-ai-practical-assessment",
   "version": "1.0.0",
-  "type": "module",
-  "author": "Ankit Negi",
+  "description": "QA AI Capability Exercise - Practice Software Testing (UI + API)",
   "scripts": {
-    "test": "node PrismStructure/tests/helpers/reporting/runTestsWithReport.js",
-    "report": "node PrismStructure/tests/helpers/reporting/ReportGenerator.js"
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @Smoke",
+    "test:regression": "playwright test --grep @Regression",
+    "test:ui": "playwright test --project=chromium",
+    "test:api": "playwright test --project=api",
+    "report": "playwright show-report PrismStructure/execution-reports/playwright-report"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
   "devDependencies": {
-    "@cucumber/cucumber": "^12.0.0",
-    "@playwright/test": "^1.55.0",
-    "chai": "^5.0.0",
-    "multiple-cucumber-html-reporter": "^3.8.0",
-    "playwright": "^1.55.0"
+    "@faker-js/faker": "^10.5.0",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.1.2",
+    "allure-commandline": "^2.43.0",
+    "allure-playwright": "^3.10.2"
   }
 }
